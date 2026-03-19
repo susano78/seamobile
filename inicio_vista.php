@@ -13,14 +13,14 @@ extract($arvista)
 <link rel="stylesheet" href="css/katex.min.css">
 <script defer src="js/katex.min.js"></script>
 <script defer src="js/auto-render.min.js"></script> 
- <title>Feliz-IA </title>
+ <title>Sea Mobile-IA </title>
   <?php estilos(); ?>
 </head>
 <body>
   <div class="app">
     <!-- Barra superior -->
     <header class="top-bar">
-      <div class="top-bar__url">Feliz-IA by IAS SOLUCIONES</div>
+      <div class="top-bar__url">Sea Mobile-IA by IAS SOLUCIONES</div>
       <div class="top-bar__icons">
         <span>🔔</span>
         <span>⚙️</span>
@@ -83,17 +83,17 @@ extract($arvista)
             <span> Estás en una plataforma de usos de inteligencias artificiales personalizadas por temas. Y además tiene un 
             desarrollo y / ó distribución de marketing increible: Se suman un Unilevel de 4 niveles o generaciones más una Matriz forzada de 8x4.</span>
           </div>
-          <a id="enlace_alta_afiliado_registro" style="display:none" href="https://www.feliz-ia.com/<?=getCarpetaRoot();?>registro/altaFeliz-IA.php?idafiliado=<?=$id_md5_afiliado;?>" target="_blank"></a>
+          <a id="enlace_alta_afiliado_registro" style="display:none" href="https://ia.seamobile.es/<?=getCarpetaRoot();?>registro/altaSeaMobile-IA.php?idafiliado=<?=$id_md5_afiliado;?>" target="_blank"></a>
           <a href="#" class="btn-primary" id="boton_copiar_enlace_alta_afiliado_registro">Copiar enlace de invitación a registro</a>
 
-          <a id="enlace_alta_afiliado" style="display:none" href="https://www.feliz-ia.com/<?=getCarpetaRoot();?>inicio/index.php?idafiliado=<?=$id_md5_afiliado;?>" target="_blank"></a>
+          <a id="enlace_alta_afiliado" style="display:none" href="https://ia.seamobile.es/<?=getCarpetaRoot();?>inicio/index.php?idafiliado=<?=$id_md5_afiliado;?>" target="_blank"></a>
           <a href="#" class="btn-primary" id="boton_copiar_enlace_alta_afiliado">Copiar enlace de web de invitación</a>
 
           <p class="text-muted" style="margin-top:8px;">
           </p>
-			 <div class="row">
+			 <!-- <div class="row">
             <span> Para cualquier incidencia: soporte@feliz-ia.com</span>
-          </div>
+          </div> -->
         </div>
       </section>
     <?php }?> 

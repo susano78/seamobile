@@ -1,6 +1,6 @@
 <?php 
 
-  // https://www.feliz-ia.com/registro/altaFeliz-IA.php?idafiliado=e894d5c7a8afee3e8fbb850cadc92082
+  // https://ia.seamobile.es/registro/altaSeaMobile-IA.php?idafiliado=9e53ec0e24a28a51399d389198fff5f8
 
 
 
@@ -71,7 +71,7 @@ if(!isset($_POST['envioAltaAfiliado']) && $arbol_tiene_nodo_raiz && $idafiliado_
   echo "Parámetros incoherentes";exit;
 }
 
-$titulo="FELIZ-IA. Registro de Usuario";
+$titulo="Sea Mobile-IA. Registro de Usuario";
 if(!$arbol_tiene_nodo_raiz && $idafiliado_md5==md5('nodo_raiz')){
   $titulo.=" Inicial";
 }
@@ -246,7 +246,7 @@ textarea.form-control{
 
   <!-- Barra superior -->
   <div class="top-bar">
-   Feliz-IA
+   Sea Mobile-IA
   </div>
 
   <?php if($_POST['envioAltaAfiliado']==1 && !$swAlta){
