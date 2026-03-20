@@ -8,6 +8,7 @@ include('global_modelo.php');
 include('afiliados_modelo.php');
 include('afiliados_solo_clientes_modelo.php');
 include('afiliados_modelo_8x4_modelo.php');
+include('afiliados_iatokens_modelos.php');
 include('empresa_modelo.php');
 include('iatematicas_modelo.php');
 

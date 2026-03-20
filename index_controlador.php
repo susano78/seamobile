@@ -13,6 +13,12 @@ function show_inicio(){
 
     $rs_empresa=get_datos_empresa(get_idempresa_login());
     $rw_empresa=$rs_empresa[0];
+
+    if (!comprobarExisteTokenAfiliado(get_idafiliado_login())) {
+            insertarSaldoInicialTokens(get_idafiliado_login());
+    }
+
+    $arvista['saldo_tokens']=obtenerSaldoTokensAfiliado(get_idafiliado_login());
     // $arvista['definicion_calificado']=$rw_empresa['definicion_calificado_empresa'];
     
     $arvista['nombre_usuario']=$rw_afiliado['nombre'];

@@ -43,10 +43,10 @@ extract($arvista)
       </div>
       <div class="header-card__row">
         <div>
-          <div class="header-card__balance-label">Token disponibles: </div>
+          <div class="header-card__balance-label">Tokens disponibles: </div>
           <!-- <div class="header-card__balance-label"> 4 M de Entrada ; 0.5M de Salida</div> -->
           <!-- <div class="header-card__balance-label"> ? M de Entrada ; ? M de Salida</div> -->
-           <div class="header-card__balance-label">?</div>
+           <div id="dv_saldo_tokens" class="header-card__balance-label"><?=$saldo_tokens;?></div>
         </div>
       </div>
     </section>
@@ -514,6 +514,9 @@ extract($arvista)
             if (chatHistory.length > 20) {
               chatHistory = chatHistory.slice(-20);
             }
+
+            document.getElementById('dv_saldo_tokens').innerText=data.saldo_tokens;
+
           } else {
             iaMsg.innerHTML = `<strong>Error:</strong> ${data.error || "Error desconocido"}`;
           }
