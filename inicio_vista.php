@@ -125,10 +125,10 @@ extract($arvista)
           </div>
 
           <a href="#" class="btn-primary toggle-unilevel">Ver Unilevel</a>
-          <div class="hidden"><?php show_tree_unilevel($rs_afiliados_tree_unilevel, $id_usuario); ?></div>
+          <div class="hidden"><?php //show_tree_unilevel($rs_afiliados_tree_unilevel, $id_usuario); ?></div>
 
           <a href="#" class="btn-primary toggle-matriz8x4"  style="margin-top:6px;background:#10b981;">Ver Matriz</a>
-          <div class="hidden"><?php show_table_matriz8x4($rs_afiliados_treeImportes_8x4, $id_usuario); ?></div>
+          <div class="hidden"><?php //show_table_matriz8x4($rs_afiliados_treeImportes_8x4, $id_usuario); ?></div>
         </div>
         <div class="card">
           <div class="card-title">Activos</div>
@@ -263,10 +263,10 @@ extract($arvista)
           </div>
 
           <a href="#" class="btn-primary toggle-unilevel">Ver Unilevel</a>
-          <div class="hidden"><?php show_tree_unilevel($rs_afiliados_tree_unilevel, $id_usuario); ?></div>
+          <div class="hidden"><?php //show_tree_unilevel($rs_afiliados_tree_unilevel, $id_usuario); ?></div>
 
           <a href="#" class="btn-primary toggle-matriz8x4"  style="margin-top:6px;background:#10b981;">Ver Matriz</a>
-          <div class="hidden"><?php show_table_matriz8x4($rs_afiliados_treeImportes_8x4, $id_usuario); ?></div>
+          <div class="hidden"><?php //show_table_matriz8x4($rs_afiliados_treeImportes_8x4, $id_usuario); ?></div>
         </div>
       </section>
     <?php }?>
