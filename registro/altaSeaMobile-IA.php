@@ -283,12 +283,12 @@ textarea.form-control{
         <input type="text" class="form-control" readonly value="<?=$name_patrocinador;?>">
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label>
-          <input type="checkbox" name="solo_cliente" <?php if(esSoloCliente()){?> checked="checked" <?php }?>>
+          <input type="checkbox" name="solo_cliente" <?php //if(esSoloCliente()){?> checked="checked" <?php //}?>>
           Sólo cliente</a>
         </label>
-      </div>
+      </div> -->
 
       <div class="form-group">
         <label>Nombre y Apellidos / Razón social</label>
@@ -695,12 +695,12 @@ function getTablaAfiliados(){
 }
 
 function esSoloCliente(){
-  if($_POST['solo_cliente']=='on'){
-     return true;
-  }
-  if(isset($_GET['idcliente'])){
-     return true;
-  }
+  // if($_POST['solo_cliente']=='on'){
+  //    return true;
+  // }
+  // if(isset($_GET['idcliente'])){
+  //    return true;
+  // }
   return false;
 }
 
