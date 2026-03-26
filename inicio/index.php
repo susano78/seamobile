@@ -1,10 +1,10 @@
 <?php
 /*
-https://www.feliz-ia.com/inicio/index.html
-https://www.feliz-ia.com/inicio/index.php?idafiliado=e894d5c7a8afee3e8fbb850cadc92082
+https://ia.seamobile.es/inicio/index.html
+https://ia.seamobile.es/inicio/index.php?idafiliado=9e53ec0e24a28a51399d389198fff5f8
 */
 
-define('RUTA_RELATIVA_REGISTRO','../registro/altaFeliz-IA.php');
+define('RUTA_RELATIVA_REGISTRO','../registro/altaSeaMobile-IA.php');
 
 $idafiliado_md5='';
 if(isset($_GET['idafiliado'])){

@@ -34,6 +34,7 @@ if(!empty($_GET['checkout_ref_id'])){
             $ar['id']=$rs_afiliado[0]['id_afiliado'];
             $ar['campopk']='id_afiliado';
             $ar['n#numero']=$new_numero_afiliado;
+            $ar['s#fecha_hora_vigencia']=date('Y-m-d H:i:s');
             $ar['n#estado']=1;    
             $ar['n#importe_pagado']=$amount_value; 
             $result=save_array_bd($ar); 

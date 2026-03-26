@@ -13,14 +13,14 @@ extract($arvista)
 <link rel="stylesheet" href="css/katex.min.css">
 <script defer src="js/katex.min.js"></script>
 <script defer src="js/auto-render.min.js"></script> 
- <title>Feliz-IA </title>
+ <title>Sea Mobile-IA </title>
   <?php estilos(); ?>
 </head>
 <body>
   <div class="app">
     <!-- Barra superior -->
     <header class="top-bar">
-      <div class="top-bar__url">Feliz-IA by IAS SOLUCIONES</div>
+      <div class="top-bar__url">Sea Mobile-IA by IAS SOLUCIONES</div>
       <div class="top-bar__icons">
         <span>🔔</span>
         <span>⚙️</span>
@@ -35,17 +35,18 @@ extract($arvista)
           <div class="header-card__title"><?=$nombre_usuario;?></div>
           <div style="font-size: 12px; opacity: .85;">ID: <?=$id_usuario;?></div>
         </div>
-        <?php if(!$es_solo_cliente){?>
-           <div class="tag-vip">Activo: <?=$estadoSINO;?> ; Calificado: <?=$calificadoSINO;?></div>
-        <?php }else{?> 
-           <div class="tag-vip">Activo: <?=$estadoSINO;?></div>
-        <?php }?> 
+        <!-- <?php //if(!$es_solo_cliente){?>
+           <div class="tag-vip">Activo: <?//=$estadoSINO;?> ; Calificado: <?//=$calificadoSINO;?></div>
+        <?//php }else{?> 
+           <div class="tag-vip">Activo: <?//=$estadoSINO;?></div>
+        <?php // }?>  -->
       </div>
       <div class="header-card__row">
         <div>
-          <div class="header-card__balance-label">Token disponibles: </div>
+          <div class="header-card__balance-label">Tokens disponibles: </div>
           <!-- <div class="header-card__balance-label"> 4 M de Entrada ; 0.5M de Salida</div> -->
-          <div class="header-card__balance-label"> ? M de Entrada ; ? M de Salida</div>
+          <!-- <div class="header-card__balance-label"> ? M de Entrada ; ? M de Salida</div> -->
+           <div id="dv_saldo_tokens" class="header-card__balance-label"><?=$saldo_tokens;?></div>
         </div>
       </div>
     </section>
@@ -76,24 +77,27 @@ extract($arvista)
           <div class="card-title">¿Qué es una IA Temática?</div>
           <div class="row">
             <span>Unas IAs temáticas o personalizadas permiten crear un sistema que piensa,
-            responde y actúa según las instrucciones sobre su tematica en especial.
+            responde y actúa según las instrucciones sobre su temática en especial.
             Sirve para generar contenido específico, concreto y especializado mejor que el de una IA Genérica.</span>
           </div>
           <div class="row">
+            <span> Estás en una plataforma de usos de inteligencias artificiales personalizadas por temas.</span>
+          </div>
+          <!-- <div class="row">
             <span> Estás en una plataforma de usos de inteligencias artificiales personalizadas por temas. Y además tiene un 
             desarrollo y / ó distribución de marketing increible: Se suman un Unilevel de 4 niveles o generaciones más una Matriz forzada de 8x4.</span>
-          </div>
-          <a id="enlace_alta_afiliado_registro" style="display:none" href="https://www.feliz-ia.com/<?=getCarpetaRoot();?>registro/altaFeliz-IA.php?idafiliado=<?=$id_md5_afiliado;?>" target="_blank"></a>
+          </div> -->
+          <a id="enlace_alta_afiliado_registro" style="display:none" href="https://ia.seamobile.es/<?=getCarpetaRoot();?>registro/altaSeaMobile-IA.php?idafiliado=<?=$id_md5_afiliado;?>" target="_blank"></a>
           <a href="#" class="btn-primary" id="boton_copiar_enlace_alta_afiliado_registro">Copiar enlace de invitación a registro</a>
 
-          <a id="enlace_alta_afiliado" style="display:none" href="https://www.feliz-ia.com/<?=getCarpetaRoot();?>inicio/index.php?idafiliado=<?=$id_md5_afiliado;?>" target="_blank"></a>
-          <a href="#" class="btn-primary" id="boton_copiar_enlace_alta_afiliado">Copiar enlace de web de invitación</a>
+          <!-- <a id="enlace_alta_afiliado" style="display:none" href="https://ia.seamobile.es/<?//=getCarpetaRoot();?>inicio/index.php?idafiliado=<?//=$id_md5_afiliado;?>" target="_blank"></a>
+          <a href="#" class="btn-primary" id="boton_copiar_enlace_alta_afiliado">Copiar enlace de web de invitación</a> -->
 
           <p class="text-muted" style="margin-top:8px;">
           </p>
-			 <div class="row">
+			 <!-- <div class="row">
             <span> Para cualquier incidencia: soporte@feliz-ia.com</span>
-          </div>
+          </div> -->
         </div>
       </section>
     <?php }?> 
@@ -121,10 +125,10 @@ extract($arvista)
           </div>
 
           <a href="#" class="btn-primary toggle-unilevel">Ver Unilevel</a>
-          <div class="hidden"><?php show_tree_unilevel($rs_afiliados_tree_unilevel, $id_usuario); ?></div>
+          <div class="hidden"><?php //show_tree_unilevel($rs_afiliados_tree_unilevel, $id_usuario); ?></div>
 
           <a href="#" class="btn-primary toggle-matriz8x4"  style="margin-top:6px;background:#10b981;">Ver Matriz</a>
-          <div class="hidden"><?php show_table_matriz8x4($rs_afiliados_treeImportes_8x4, $id_usuario); ?></div>
+          <div class="hidden"><?php //show_table_matriz8x4($rs_afiliados_treeImportes_8x4, $id_usuario); ?></div>
         </div>
         <div class="card">
           <div class="card-title">Activos</div>
@@ -259,10 +263,10 @@ extract($arvista)
           </div>
 
           <a href="#" class="btn-primary toggle-unilevel">Ver Unilevel</a>
-          <div class="hidden"><?php show_tree_unilevel($rs_afiliados_tree_unilevel, $id_usuario); ?></div>
+          <div class="hidden"><?php //show_tree_unilevel($rs_afiliados_tree_unilevel, $id_usuario); ?></div>
 
           <a href="#" class="btn-primary toggle-matriz8x4"  style="margin-top:6px;background:#10b981;">Ver Matriz</a>
-          <div class="hidden"><?php show_table_matriz8x4($rs_afiliados_treeImportes_8x4, $id_usuario); ?></div>
+          <div class="hidden"><?php //show_table_matriz8x4($rs_afiliados_treeImportes_8x4, $id_usuario); ?></div>
         </div>
       </section>
     <?php }?>
@@ -328,18 +332,17 @@ extract($arvista)
       </button>
       <?php }?>
 
-      <?php if(!$es_solo_cliente){?> 
-      <button class="nav-item nav-item--edge" data-target="screen-stats">
+      <?php //if(!$es_solo_cliente){?> 
+      <!-- <button class="nav-item nav-item--edge" data-target="screen-stats">
         <div class="nav-item__icon">
-          <!-- icono GRÁFICA -->
           <svg viewBox="0 0 24 24">
             <rect x="3" y="4" width="18" height="14" rx="2"></rect>
             <path d="M7 14v-3.5L11 9l4 3 2-1.5" />
           </svg>
         </div>
         Equipo
-      </button>
-      <?php }?>
+      </button> -->
+      <?php //}?>
 
       <!-- botón central flotante (chat) -->
       <button class="nav-item nav-fab <?=((!$es_solo_cliente) ? '':'active');?>" data-target="screen-chat">
@@ -352,10 +355,9 @@ extract($arvista)
         </div>
       </button>
 
-      <?php if(!$es_solo_cliente){?> 
-      <button class="nav-item nav-item--edge" data-target="screen-wallet">
+      <?php //if(!$es_solo_cliente){?> 
+      <!-- <button class="nav-item nav-item--edge" data-target="screen-wallet">
         <div class="nav-item__icon">
-          <!-- icono CARTERA -->
           <svg viewBox="0 0 24 24">
             <rect x="3" y="7" width="18" height="11" rx="2"></rect>
             <path d="M7 7V5a2 2 0 0 1 2-2h6" />
@@ -363,8 +365,8 @@ extract($arvista)
           </svg>
         </div>
         Cartera
-      </button>
-      <?php }?>
+      </button> -->
+      <?php //}?>
 
       <button class="nav-item nav-item--edge <?=((!$es_solo_cliente) ? '':'margin-left350');?>" data-target="screen-profile">
         <div class="nav-item__icon">
@@ -512,6 +514,9 @@ extract($arvista)
             if (chatHistory.length > 20) {
               chatHistory = chatHistory.slice(-20);
             }
+
+            document.getElementById('dv_saldo_tokens').innerText=data.saldo_tokens;
+
           } else {
             iaMsg.innerHTML = `<strong>Error:</strong> ${data.error || "Error desconocido"}`;
           }

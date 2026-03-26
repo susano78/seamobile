@@ -10,7 +10,7 @@ extract($arvista)
 		<!-- Favicon (icono del navegador) -->
 <link rel="icon" href="/feliz-ia-favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="/feliz-ia-favicon.ico" type="image/x-icon">
-  <title>Login · Feliz-IA by IAS SOLUCIONES</title>
+  <title>Login · Sea Mobile-IA by IAS SOLUCIONES</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -206,19 +206,20 @@ extract($arvista)
   <div class="app">
 
     <header class="top-bar">
-      <div class="top-bar__url">Feliz-IA by IAS SOLUCIONES</div>
+      <div class="top-bar__url">Sea Mobile-IA by IAS SOLUCIONES</div>
     </header>
 
     <div class="card">
       <div class="header-card">
-        <h1>Acceso a Feliz-IA</h1>
+        <h1>Acceso a Sea Mobile-IA</h1>
         <p>Introduce tus credenciales para continuar</p>
       </div>
 
       <form action="felizia.php?p=dologin" method="POST">
         <div>
           <label for="empresa">Empresa</label>
-          <input id="empresa" name="empresa" type="text" placeholder="Empresa" readonly value="Feliz-IA"  required />
+          <input type="text" placeholder="Empresa" readonly value="Sea Mobile-IA"  required />
+          <input id="empresa" name="empresa" type="hidden" value="seamobile" />
         </div>
 
         <div>
@@ -239,11 +240,11 @@ extract($arvista)
       </div> -->
 
       <div class="footer">
-        © Feliz-IA by IAS SOLUCIONES · Acceso seguro
+        © Sea Mobile-IA by IAS SOLUCIONES · Acceso seguro
       </div>
 
       <!-- APK Download Section -->
-      <div class="apk-section">
+      <!-- <div class="apk-section">
         <a href="App_feliz-ia.apk" class="btn-android">
           <i class="fab fa-android" style="font-size: 20px;"></i> Descargar App (APK)
         </a>
@@ -251,7 +252,7 @@ extract($arvista)
           <p><strong>✨ Android detectado</strong></p>
           <p>Te recomendamos descargar nuestra App oficial para una mejor experiencia.</p>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 

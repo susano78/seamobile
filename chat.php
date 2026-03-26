@@ -1,5 +1,6 @@
 <?php
 // chat.php
+session_start();
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *'); // ajusta el dominio en producción
 
@@ -9,6 +10,7 @@ include('global_controlador.php');
 include('global_vista.php');
 include('global_modelo.php');
 include('iatematicas_modelo.php');
+include('afiliados_iatokens_modelos.php');
 
 
 // 1. Leer el mensaje enviado por POST
@@ -117,8 +119,32 @@ if (!isset($dataResponse['choices'][0]['message']['content'])) {
 
 $textoIA = $dataResponse['choices'][0]['message']['content'];
 
-// 5. Devolver al frontend
+// 5. Calcular tokens consumidos (provistos exactos por la API de OpenAI)
+$totalTokens = $dataResponse['usage']['total_tokens'] ?? 0;
+$saldo_tokens=0;
+
+if ($totalTokens > 0) {
+    $id_afiliado = get_idafiliado_login();
+    if ($id_afiliado) {
+        conectar();
+        
+        // Comprobar si existe, si no, crear con saldo inicial
+        if (!comprobarExisteTokenAfiliado($id_afiliado)) {
+            insertarSaldoInicialTokens($id_afiliado);
+        }
+        
+        // Restar los tokens consumidos
+        restarTokensAfiliado($id_afiliado, $totalTokens);
+
+        $saldo_tokens=obtenerSaldoTokensAfiliado(get_idafiliado_login());
+        
+        desconectar();
+    }
+}
+
+// 6. Devolver al frontend
 echo json_encode([
     'respuesta' => $textoIA,
+    'saldo_tokens' => $saldo_tokens,
 ]);
 ?>
