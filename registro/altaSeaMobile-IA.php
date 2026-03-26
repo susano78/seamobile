@@ -330,13 +330,14 @@ textarea.form-control{
         </label>
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label>Cuenta SWIFT/BIC</label>
         <input type="text" class="form-control" name="swift_bic">
-      </div>
+      </div> -->
+      <input id="swift_bic" name="swift_bic" type="hidden" value="" />
 
       <div class="form-group">
-        <label>Cuenta Bancaria (Para recibir las comisiones, y para el cargo mensual de 11€/mes)</label>
+        <label>Cuenta Bancaria</label>
         <input type="text" class="form-control" name="cuenta_bancaria">
       </div>
 
