@@ -47,10 +47,13 @@ function do_login(){
 
             desconectar();
 
-            if(sw_estado_afiliado_activo($rw_afiliado) && $saldo_tokens > 0){
+            $sw_ativo=sw_estado_afiliado_activo($rw_afiliado);
+
+            if($sw_ativo && $saldo_tokens > 0){
                 header(header: "Location: index.php");
             }else{
-                $param_tk = $saldo_tokens > 0 ? "" :"tk=1&";
+
+                $param_tk = $sw_ativo && $saldo_tokens < 1 ? "tk=1&": "";
 
                 header("Location: registro/paypal_afiliados/index.php?".$param_tk."idafiliado=".$rw_afiliado['id_md5']);
             }  
@@ -80,12 +83,16 @@ function do_login(){
 
             desconectar();
 
-            if(sw_estado_afiliado_activo($rw_afiliado)  && $saldo_tokens > 0){
+            $sw_ativo=sw_estado_afiliado_activo($rw_afiliado);
+
+            if($sw_ativo && $saldo_tokens > 0){
                 header(header: "Location: index.php");
             }else{
-                $param_tk = $saldo_tokens > 0 ? "" :"tk=1&";
 
-                header("Location: registro/paypal_afiliados/index.php?".$param_tk."sc=1&idafiliado=".$rw_afiliado['id_md5']);
+                $param_tk = $sw_ativo && $saldo_tokens < 1 ? "tk=1&": "";
+                $param_sc = !$sw_ativo  ? "sc=1&": "";
+
+                header("Location: registro/paypal_afiliados/index.php?".$param_tk.$param_sc."idafiliado=".$rw_afiliado['id_md5']);
             }  
     // //fin login si es un afiliado
     

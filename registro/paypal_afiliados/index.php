@@ -9,7 +9,20 @@ $currency='EUR';
 $itemNumber=$idafiliado; //es el md5 del afiliado
 $itemPrice=!esSoloCliente() ? $rs_empresa[0]['importe_afiliado_empresa']:$rs_empresa[0]['importe_cliente_empresa'];
 $itemName=!esSoloCliente() ? 'Afiliación':'Alta de Cliente';
-$paramSC=!esSoloCliente() ? '':'sc=1&';
+$paramSCTK=!esSoloCliente() ? '':'sc=1&';
+
+if(esRenovacionToken()){
+    $paramSCTK='tk=1&';
+    $itemName='Renovación';
+    $itemPrice=$rs_empresa[0]['importe_cliente_empresa'];
+}
+
+function esRenovacionToken(){
+  if(isset($_GET['tk']) && $_GET['tk']=='1'){
+     return true;
+  }
+  return false;
+}
 
 ?>
 <!DOCTYPE html>
@@ -79,7 +92,7 @@ paypal.Buttons({
             setProcessing(true);
 
             var postData = {paypal_order_check: 1, order_id: orderData.id};
-            fetch('paypal_checkout_validate.php?<?=$paramSC;?>idafiliado=<?=$idafiliado;?>', {
+            fetch('paypal_checkout_validate.php?<?=$paramSCTK;?>idafiliado=<?=$idafiliado;?>', {
                 method: 'POST',
                 headers: {'Accept': 'application/json'},
                 body: encodeFormData(postData)
@@ -87,7 +100,7 @@ paypal.Buttons({
             .then((response) => response.json())
             .then((result) => {
                 if(result.status == 1){
-                    window.location.href = "payment-status.php?<?=$paramSC;?>checkout_ref_id="+result.ref_id+"&item_number="+result.item_number+"&amount_value="+result.amount_value;
+                    window.location.href = "payment-status.php?<?=$paramSCTK;?>checkout_ref_id="+result.ref_id+"&item_number="+result.item_number+"&amount_value="+result.amount_value;
                 }else{
                     const messageContainer = document.querySelector("#paymentResponse");
                     messageContainer.classList.remove("hidden");
