@@ -43,12 +43,16 @@ function do_login(){
             $rs_afiliado=get_afiliado_byId($row_afiliado['id_afiliado']);
             $rw_afiliado=$rs_afiliado[0];
 
+            $saldo_tokens=obtenerSaldoTokensAfiliado(get_idafiliado_login());
+
             desconectar();
 
-            if(sw_estado_afiliado_activo($rw_afiliado)){
+            if(sw_estado_afiliado_activo($rw_afiliado) && $saldo_tokens > 0){
                 header(header: "Location: index.php");
             }else{
-                header("Location: registro/paypal_afiliados/index.php?idafiliado=".$rw_afiliado['id_md5']);
+                $param_tk = $saldo_tokens > 0 ? "" :"tk=1&";
+
+                header("Location: registro/paypal_afiliados/index.php?".$param_tk."idafiliado=".$rw_afiliado['id_md5']);
             }  
             // header("Location: index.php");
 
@@ -72,12 +76,16 @@ function do_login(){
             $rs_afiliado=get_afiliado_solo_cliente_byId($row_afiliado['id_afiliado']);
             $rw_afiliado=$rs_afiliado[0];
 
+            $saldo_tokens=obtenerSaldoTokensAfiliado(get_idafiliado_login());
+
             desconectar();
 
-            if(sw_estado_afiliado_activo($rw_afiliado)){
+            if(sw_estado_afiliado_activo($rw_afiliado)  && $saldo_tokens > 0){
                 header(header: "Location: index.php");
             }else{
-                header("Location: registro/paypal_afiliados/index.php?sc=1&idafiliado=".$rw_afiliado['id_md5']);
+                $param_tk = $saldo_tokens > 0 ? "" :"tk=1&";
+
+                header("Location: registro/paypal_afiliados/index.php?".$param_tk."sc=1&idafiliado=".$rw_afiliado['id_md5']);
             }  
     // //fin login si es un afiliado
     

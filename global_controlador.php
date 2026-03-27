@@ -5,7 +5,7 @@ function get_idafiliado_login(){
 }
 
 function esAfiliadoLoginSoloCliente(){
-    return  false; //$_SESSION["aut"] == 'cliente';
+    return  $_SESSION["aut"] == 'cliente';
 }
 
 function get_idempresa_login(){
