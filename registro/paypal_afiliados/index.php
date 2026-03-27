@@ -11,14 +11,20 @@ $itemPrice=!esSoloCliente() ? $rs_empresa[0]['importe_afiliado_empresa']:$rs_emp
 $itemName=!esSoloCliente() ? 'Afiliación':'Alta de Cliente';
 $paramSCTK=!esSoloCliente() ? '':'sc=1&';
 
-if(esRenovacionToken()){
-    $paramSCTK='tk=1&';
+if(esRenovacionToken() || esRenovacionTokenSC()){
+    $paramSCTK= esRenovacionToken() ? 'tk=1&' : 'tksc=1&';
     $itemName='Renovación';
     $itemPrice=$rs_empresa[0]['importe_cliente_empresa'];
 }
 
 function esRenovacionToken(){
   if(isset($_GET['tk']) && $_GET['tk']=='1'){
+     return true;
+  }
+  return false;
+}
+function esRenovacionTokenSC(){
+  if(isset($_GET['tksc']) && $_GET['tksc']=='1'){
      return true;
   }
   return false;

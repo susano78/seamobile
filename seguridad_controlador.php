@@ -89,7 +89,7 @@ function do_login(){
                 header(header: "Location: index.php");
             }else{
 
-                $param_tk = $sw_ativo && $saldo_tokens < 1 ? "tk=1&": "";
+                $param_tk = $sw_ativo && $saldo_tokens < 1 ? "tksc=1&": "";
                 $param_sc = !$sw_ativo  ? "sc=1&": "";
 
                 header("Location: registro/paypal_afiliados/index.php?".$param_tk.$param_sc."idafiliado=".$rw_afiliado['id_md5']);
