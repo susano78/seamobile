@@ -531,6 +531,13 @@ function esSoloCliente(){
   return false;
 }
 
+function esRenovacionToken(){
+  if(isset($_GET['tk']) && $_GET['tk']=='1'){
+     return true;
+  }
+  return false;
+}
+
 function getTablaAfiliados(){
   $tabla='afiliados';
   if(esSoloCliente()) {
