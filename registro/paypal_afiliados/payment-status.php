@@ -538,6 +538,13 @@ function esRenovacionToken(){
   return false;
 }
 
+function esRenovacionTokenSC(){
+  if(isset($_GET['tksc']) && $_GET['tksc']=='1'){
+     return true;
+  }
+  return false;
+}
+
 function getTablaAfiliados(){
   $tabla='afiliados';
   if(esSoloCliente()) {
