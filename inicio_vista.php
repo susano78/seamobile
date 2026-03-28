@@ -33,7 +33,7 @@ extract($arvista)
       <div class="header-card__row">
         <div>
           <div class="header-card__title"><?=$nombre_usuario;?></div>
-          <div style="font-size: 12px; opacity: .85;">ID: <?=$id_usuario;?></div>
+          <div style="font-size: 12px; opacity: .85;">ID: <?=$id_numero_usuario;?></div>
         </div>
         <!-- <?php //if(!$es_solo_cliente){?>
            <div class="tag-vip">Activo: <?//=$estadoSINO;?> ; Calificado: <?//=$calificadoSINO;?></div>

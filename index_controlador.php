@@ -23,6 +23,7 @@ function show_inicio(){
     
     $arvista['nombre_usuario']=$rw_afiliado['nombre'];
     $arvista['id_usuario']=$rw_afiliado['id_afiliado'];
+    $arvista['id_numero_usuario']=$rw_afiliado['numero'];
     $arvista['sexo']=$rw_afiliado['sexo'];
     $arvista['edad']=$rw_afiliado['edad'];
     $arvista['pais']=$rw_afiliado['pais'];
