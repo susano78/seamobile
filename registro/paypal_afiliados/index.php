@@ -17,19 +17,6 @@ if(esRenovacionToken() || esRenovacionTokenSC()){
     $itemPrice=$rs_empresa[0]['importe_cliente_empresa'];
 }
 
-function esRenovacionToken(){
-  if(isset($_GET['tk']) && $_GET['tk']=='1'){
-     return true;
-  }
-  return false;
-}
-function esRenovacionTokenSC(){
-  if(isset($_GET['tksc']) && $_GET['tksc']=='1'){
-     return true;
-  }
-  return false;
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
