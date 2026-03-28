@@ -516,6 +516,10 @@ extract($arvista)
             }
 
             document.getElementById('dv_saldo_tokens').innerText=data.saldo_tokens;
+ 
+            if(data.saldo_tokens < 1){
+                  window.location.replace("index.php?p=cerrar_sesion");
+            }
 
           } else {
             iaMsg.innerHTML = `<strong>Error:</strong> ${data.error || "Error desconocido"}`;
