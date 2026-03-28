@@ -26,7 +26,7 @@ if(!empty($_GET['checkout_ref_id'])){
     $cuota_mensual_prefacturas=$rs_empresa_configuracion[0]['importe_cliente_empresa']; //para el afiliado y el solo cliente
     $empresa=$rs_empresa[0]['empresa'];
     $generar_registros=false;
-    $generar_prefacturas=false;
+    $es_alta_afiliado=false;
 
     if($rs_afiliado[0]['numero']==''){
             $errorbd='';
@@ -43,7 +43,7 @@ if(!empty($_GET['checkout_ref_id'])){
                 $errorbd='<br>'.utf8_decode('Error al guardar el número de afiliado');
             }else{
                 $generar_registros=true; 
-                $generar_prefacturas=true;
+                $es_alta_afiliado=true;
             }
     }else{
         $new_numero_afiliado=$rs_afiliado[0]['numero'];
@@ -67,7 +67,7 @@ if(!empty($_GET['checkout_ref_id'])){
                                     , $id_cliente
                                     , $amount_value);
 
-                if($generar_prefacturas){
+                if($es_alta_afiliado){
                    $result=crear_prefacturas($rs_afiliado
                                             ,$rs_afiliado[0]['id_empresa']
                                             ,$rs_empresa_configuracion
@@ -75,7 +75,7 @@ if(!empty($_GET['checkout_ref_id'])){
                                             ,$cuota_mensual_prefacturas);
                 }
 
-                if(esRenovacionToken() || esRenovacionTokenSC()) {
+                if($es_alta_afiliado || esRenovacionToken() || esRenovacionTokenSC()) {
                     if (!comprobarExisteTokenAfiliado($rs_afiliado[0]['id_afiliado'])) {
                         insertarSaldoInicialTokens($rs_afiliado[0]['id_afiliado']);
                     }else{
