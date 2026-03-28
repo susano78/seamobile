@@ -52,7 +52,7 @@ function do_login(){
             if($sw_ativo && $saldo_tokens > 0){
                 header(header: "Location: index.php");
             }else{
-
+                session_destroy();
                 $param_tk = $sw_ativo && $saldo_tokens < 1 ? "tk=1&": "";
 
                 header("Location: registro/paypal_afiliados/index.php?".$param_tk."idafiliado=".$rw_afiliado['id_md5']);
