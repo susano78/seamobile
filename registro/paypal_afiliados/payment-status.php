@@ -4,7 +4,7 @@
  require_once '../global_controlador.php';
  require_once '../global_modelo.php';
  require_once '../entidad_controlador.php';
- require_once  !esSoloCliente() ? '../afiliados_modelo.php':'../afiliados_solo_clientes_modelo.php';
+ require_once  !(esSoloCliente() || esRenovacionTokenSC()) ? '../afiliados_modelo.php':'../afiliados_solo_clientes_modelo.php';
  require_once '../spadm_modelo.php';
  require_once '../empresa_modelo.php';
 
@@ -26,6 +26,7 @@ if(!empty($_GET['checkout_ref_id'])){
     $cuota_mensual_prefacturas=$rs_empresa_configuracion[0]['importe_cliente_empresa']; //para el afiliado y el solo cliente
     $empresa=$rs_empresa[0]['empresa'];
     $generar_registros=false;
+    $es_alta_afiliado=false;
 
     if($rs_afiliado[0]['numero']==''){
             $errorbd='';
@@ -42,9 +43,14 @@ if(!empty($_GET['checkout_ref_id'])){
                 $errorbd='<br>'.utf8_decode('Error al guardar el número de afiliado');
             }else{
                 $generar_registros=true; 
+                $es_alta_afiliado=true;
             }
     }else{
         $new_numero_afiliado=$rs_afiliado[0]['numero'];
+    }
+
+    if(esRenovacionToken() || esRenovacionTokenSC()){
+        $generar_registros=true;
     }
 
     if($generar_registros){
@@ -61,11 +67,22 @@ if(!empty($_GET['checkout_ref_id'])){
                                     , $id_cliente
                                     , $amount_value);
 
-                $result=crear_prefacturas($rs_afiliado
+                if($es_alta_afiliado){
+                   $result=crear_prefacturas($rs_afiliado
                                             ,$rs_afiliado[0]['id_empresa']
                                             ,$rs_empresa_configuracion
                                             ,$id_cliente
                                             ,$cuota_mensual_prefacturas);
+                }
+
+                if($es_alta_afiliado || esRenovacionToken() || esRenovacionTokenSC()) {
+                    if (!comprobarExisteTokenAfiliado($rs_afiliado[0]['id_afiliado'])) {
+                        insertarSaldoInicialTokens($rs_afiliado[0]['id_afiliado']);
+                    }else{
+                        resetearTokensAfiliado($rs_afiliado[0]['id_afiliado']);
+                    }
+                }
+
             }
     }
 
@@ -264,10 +281,15 @@ function crear_factura($rs_afiliado, $id_empresa, $rs_empresa_configuracion, $id
     $porcentajeIGIC=7;
     $precio_unidad=calcularPrecioUnidad($importe, $porcentajeIGIC);
 
+    $concepto_detalle_factura=(!esSoloCliente() ? utf8_decode('Suscripción de afiliado') : utf8_decode('Suscripción de cliente'));
+    if(esRenovacionToken() || esRenovacionTokenSC()){
+        $concepto_detalle_factura=utf8_decode('Renovación Tokens');
+    }
+
     $param=array();
     $param['id_factura']=$result_cabecera['new_id_factura'];
     $param['codigo']=''; 
-    $param['concepto']=(!esSoloCliente() ? utf8_decode('Suscripción de afiliado') : utf8_decode('Suscripción de cliente'));
+    $param['concepto']=$concepto_detalle_factura;
     $param['unidades']=1;
     $param['precio_unidad']=$precio_unidad;
     $param['subtotal']=$precio_unidad;
@@ -531,6 +553,20 @@ function esSoloCliente(){
   return false;
 }
 
+function esRenovacionToken(){
+  if(isset($_GET['tk']) && $_GET['tk']=='1'){
+     return true;
+  }
+  return false;
+}
+
+function esRenovacionTokenSC(){
+  if(isset($_GET['tksc']) && $_GET['tksc']=='1'){
+     return true;
+  }
+  return false;
+}
+
 function getTablaAfiliados(){
   $tabla='afiliados';
   if(esSoloCliente()) {
@@ -538,6 +574,48 @@ function getTablaAfiliados(){
   }
   return $tabla;
 }
+
+function comprobarExisteTokenAfiliado($id_afiliado) {
+    $solo_cliente=esSoloCliente() || esRenovacionTokenSC() ? 1 : 0;
+    $ar = [
+        'tabla' => 'afiliados_ia_tokens',
+        'select#1' => 'id_ia_token',
+        'n#id_afiliado' => $id_afiliado,
+        'n#solo_cliente' => $solo_cliente
+    ];
+    $sql = get_sql_select($ar);
+    $res = get_registros($sql);
+    return count($res) > 0;
+}
+
+function insertarSaldoInicialTokens($id_afiliado) {
+    $solo_cliente=esSoloCliente() || esRenovacionTokenSC() ? 1 : 0;
+    $ar = [
+        'tabla' => 'afiliados_ia_tokens',
+        'id' => 'new',
+        'n#id_afiliado' => $id_afiliado,
+        's#fecha_actualizacion' => date('Y-m-d H:i:s'),
+        'n#saldo_tokens' => 4000000,
+        'n#solo_cliente' => $solo_cliente
+    ];
+    save_array_bd($ar);
+}
+
+function resetearTokensAfiliado($id_afiliado) {
+    global $link;
+    $solo_cliente=esSoloCliente() || esRenovacionTokenSC() ? 1 : 0;
+    $id_afiliado = (int)$id_afiliado;
+    $fecha = date('Y-m-d H:i:s');
+    
+    $sql = "UPDATE afiliados_ia_tokens 
+            SET saldo_tokens = 4000000, 
+                fecha_actualizacion = '$fecha' 
+            WHERE id_afiliado = $id_afiliado
+            AND solo_cliente = $solo_cliente";
+            
+    return mysqli_query($link, $sql);
+}
+
 
 ?>
 <style>  
