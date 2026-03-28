@@ -576,7 +576,7 @@ function getTablaAfiliados(){
 }
 
 function comprobarExisteTokenAfiliado($id_afiliado) {
-    $solo_cliente=esSoloCliente() ? 1 : 0;
+    $solo_cliente=esSoloCliente() || esRenovacionTokenSC() ? 1 : 0;
     $ar = [
         'tabla' => 'afiliados_ia_tokens',
         'select#1' => 'id_ia_token',
@@ -589,7 +589,7 @@ function comprobarExisteTokenAfiliado($id_afiliado) {
 }
 
 function insertarSaldoInicialTokens($id_afiliado) {
-    $solo_cliente=esSoloCliente() ? 1 : 0;
+    $solo_cliente=esSoloCliente() || esRenovacionTokenSC() ? 1 : 0;
     $ar = [
         'tabla' => 'afiliados_ia_tokens',
         'id' => 'new',
@@ -603,7 +603,7 @@ function insertarSaldoInicialTokens($id_afiliado) {
 
 function resetearTokensAfiliado($id_afiliado) {
     global $link;
-    $solo_cliente=esSoloCliente() ? 1 : 0;
+    $solo_cliente=esSoloCliente() || esRenovacionTokenSC() ? 1 : 0;
     $id_afiliado = (int)$id_afiliado;
     $fecha = date('Y-m-d H:i:s');
     
