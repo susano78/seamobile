@@ -588,6 +588,20 @@ function comprobarExisteTokenAfiliado($id_afiliado) {
     return count($res) > 0;
 }
 
+function obtenerMaximoIATokens() {
+    $ar = [
+        'tabla' => 'mdtParametros',
+        'select#1' => 'valor',
+        's#clave' => 'maximo_ia_tokens',
+    ];
+    $sql = get_sql_select($ar);
+    $res = get_registros($sql);
+    if (count($res) > 0) {
+        return (int)$res[0]['valor'];
+    }
+    return 400000;
+}
+
 function insertarSaldoInicialTokens($id_afiliado) {
     $solo_cliente=esSoloCliente() || esRenovacionTokenSC() ? 1 : 0;
     $ar = [
@@ -595,7 +609,7 @@ function insertarSaldoInicialTokens($id_afiliado) {
         'id' => 'new',
         'n#id_afiliado' => $id_afiliado,
         's#fecha_actualizacion' => date('Y-m-d H:i:s'),
-        'n#saldo_tokens' => 4000000,
+        'n#saldo_tokens' => obtenerMaximoIATokens(),
         'n#solo_cliente' => $solo_cliente
     ];
     save_array_bd($ar);
@@ -608,8 +622,8 @@ function resetearTokensAfiliado($id_afiliado) {
     $fecha = date('Y-m-d H:i:s');
     
     $sql = "UPDATE afiliados_ia_tokens 
-            SET saldo_tokens = 4000000, 
-                fecha_actualizacion = '$fecha' 
+            SET saldo_tokens = ".obtenerMaximoIATokens()."
+               ,fecha_actualizacion = '$fecha' 
             WHERE id_afiliado = $id_afiliado
             AND solo_cliente = $solo_cliente";
             
